@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import CustomButton from '../CustomButton';
 import FormInput from '../FormInput';
 
-import { signInWithGoogle } from '../../firebase/firebase.utils';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 
 import './SignIn.styles.scss';
 
@@ -17,10 +17,20 @@ class SignIn extends Component {
     };
   }
 
-  handleSubmit = (evt) => {
+  handleSubmit = async (evt) => {
     evt.preventDefault();
+    const { email, password } = this.state;
 
-    this.setState({ email: '', password: '' });
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      this.setState({ email: '', password: '' });
+    } catch (error) {
+      /**
+       * FIXME: Error exposes that password invalid. Potential security flow
+       * TODO: Refactor error messages to prevent security flows
+       */
+      console.log(error);
+    }
   };
 
   handleChange = (evt) => {
