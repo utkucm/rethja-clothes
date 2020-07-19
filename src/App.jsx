@@ -5,10 +5,10 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Header from './components/Header';
 
-import Checkout from './pages/Checkout';
+import CheckoutPage from './pages/CheckoutPage';
 import Homepage from './pages/Homepage';
 import ShopPage from './pages/ShopPage';
-import SignInAndSignUp from './pages/SignInAndSignUp';
+import SignInAndSignUpPage from './pages/SignInAndSignUpPage';
 
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
@@ -50,11 +50,11 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Homepage} />
           <Route path='/shop' component={ShopPage} />
-          <Route exact path='/checkout' component={Checkout} />
+          <Route exact path='/checkout' component={CheckoutPage} />
           <Route
             exact
             path='/signin'
-            render={() => (this.props.currentUser ? <Redirect to='/' /> : <SignInAndSignUp />)}
+            render={() => (this.props.currentUser ? <Redirect to='/' /> : <SignInAndSignUpPage />)}
           />
         </Switch>
       </div>
