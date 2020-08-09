@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import PreviewCollection from '../PreviewCollection';
+import CollectionPreview from '../CollectionPreview';
 
 import { selectCollectionsForPreview } from '../../redux/shop/shopSelectors';
 
@@ -12,7 +12,7 @@ const CollectionsOverview = ({ collections }) => {
   return (
     <CollectionsOverviewContainer>
       {collections.map(({ id, ...otherCollectionProps }) => (
-        <PreviewCollection key={id} {...otherCollectionProps} />
+        <CollectionPreview key={id} {...otherCollectionProps} />
       ))}
     </CollectionsOverviewContainer>
   );

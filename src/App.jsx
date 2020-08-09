@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { createGlobalStyle } from 'styled-components';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Switch, Route, Redirect } from 'react-router-dom';
@@ -15,7 +16,32 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/userActions';
 import { selectCurrentUser } from './redux/user/userSelectors';
 
-import './App.css';
+const MainContainer = createGlobalStyle`
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Open Sans Condensed';
+    padding: 20px 60px;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+  }
+`;
 
 class App extends Component {
   unsubscribeFromAuth = null;
@@ -45,6 +71,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <MainContainer />
         <Header />
         <Switch>
           <Route exact path='/' component={Homepage} />
